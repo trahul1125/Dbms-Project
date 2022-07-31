@@ -1,1 +1,1 @@
-# Dbms-Project
+# Hello Everyone! This is a DBMS project that we created during our 2nd year of college. It is basically used to manage all facets of a college organization such as hostel management, entry management etc.
