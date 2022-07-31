@@ -1,0 +1,351 @@
+-- Data base management project 
+-- Rahul Singh Thakur
+
+--CREATE TABLES--
+
+
+
+--TABLE FOR GATE--
+
+create table Gate(gateid varchar(20) 
+constraint pk_gateid PRIMARY KEY,
+gatename varchar(20));
+
+
+--TABLE FOR USER--
+
+create table Ouser(Userid number(10)
+constraint pk_Userid PRIMARY KEY, 
+fname char(20),address varchar(100),
+gateid varchar(20),
+Mrole varchar(20), constraint fk_gateid
+FOREIGN KEY(gateid) REFERENCES Gate(gateid),
+gatein timestamp , gateout timestamp, 
+outgateid varchar(20));
+
+
+--TABLE FOR HOSTEL--
+
+
+create table Hostel(hostelid varchar(20) 
+constraint pk_hostelid PRIMARY KEY, 
+hname varchar(20));
+
+--TABLE FOR VISITOR--
+
+
+create table visitor(vid varchar(20) 
+constraint pk_vid PRIMARY KEY, otp number(10));
+
+
+--TABLE FOR MEMBER--
+
+
+create table Omember(mid varchar(20) 
+constraint pk_mid PRIMARY KEY,
+pword varchar(20) DEFAULT 'PASSWORD',
+dept varchar(20), dob date, hostelid varchar(20),
+FOREIGN KEY(hostelid) REFERENCES Hostel(hostelid),
+roomno varchar(20), indate date, outdate date);
+
+
+--TABLE FOR SPORTS
+
+
+create table sports(equipid varchar(20) 
+constraint pk_equipid PRIMARY KEY,
+equipname varchar(30), Userid number(10),
+FOREIGN KEY(Userid) REFERENCES Ouser(Userid));
+
+
+--SELECT--
+
+select * from  Ouser
+select * from  Gate
+select * from  Hostel
+select * from  visitor 
+select * from  Omember 
+select * from  sports
+
+
+--DROP TABLES--
+
+DROP TABLE Ouser
+DROP TABLE Gate
+DROP TABLE Hostel
+DROP TABLE visitor 
+DROP TABLE Omember
+DROP TABLE sports 
+
+
+--describe table --
+
+
+desc Ouser
+desc Gate
+desc Hostel
+desc visitor 
+desc Omember
+desc sports
+
+
+
+--FOREIGN KEYS--
+
+
+-- ALTER TABLE Ouser
+-- ADD constraint fk_gateid
+-- FOREIGN KEY(gateid) 
+-- REFERENCES Gate(gateid);
+
+-- ALTER TABLE Omember
+-- ADD CONSTRAINT FOREIGN KEY(hostelid)
+-- REFERENCES Hostel(hostelid);
+
+-- ALTER TABLE sports
+-- ADD CONSTRAINT FOREIGN 
+-- KEY(Userid) REFERENCES Ouser(Userid));
+
+
+--INSERTS--
+
+
+--inserting values into gate table
+
+insert into Gate values(1, 'Main Gate');
+insert into Gate values(2, 'R&D Gate ');
+insert into Gate values(3, 'tslas Gate');
+insert into Gate values(4, 'aux Gate');
+insert into Gate values(5, 'old lib Gate');
+select * from Gate;
+
+
+
+--Entries for visitor table--
+
+insert into visitor values('a1',2222);
+insert into visitor values('a2',2226);
+insert into visitor values('a3',2292);
+insert into visitor values('a4',3222);
+insert into visitor values('a5',2263);
+insert into visitor values('a6',5678);
+insert into visitor values('a7',5262);
+insert into visitor values('a8',2554);
+insert into visitor values('a9',2342);
+insert into visitor values('a10',2342);
+insert into visitor values('a11',2345);
+insert into visitor values('a12',1234);
+insert into visitor values('a13',2344);
+insert into visitor values('a14',1234);
+insert into visitor values('a15',2654);
+insert into visitor values('a16',3342);
+insert into visitor values('a17',5342);
+insert into visitor values('a18',7342);
+insert into visitor values('a19',9342);
+insert into visitor values('a20',6342);
+
+
+--Entries for hostel
+
+
+insert into Hostel values(001,' Hostel A');
+insert into Hostel values(002,' Hostel B');
+insert into Hostel values(003,' Hostel C');
+insert into Hostel values(004,' Hostel E');
+insert into Hostel values(006,' Hostel G');
+insert into Hostel values(007,' Hostel H');
+insert into Hostel values(008,' Hostel I');
+insert into Hostel values(009,' Hostel J');
+insert into Hostel values(010,' Hostel K');
+insert into Hostel values(011,' Hostel L');
+insert into Hostel values(012,' Hostel M');
+insert into Hostel values(013,' Hostel N');
+insert into Hostel values(014,' Hostel O');
+insert into Hostel values(015,' Hostel PG');
+insert into Hostel values(016,' Hostel Q');
+
+
+--Entries for 0user--
+
+
+
+insert into Ouser values(1,'Rahul'   ,'24 Sunshine Colony,Surat,Gujarat'         ,'1','Member','13-Apr-2022 8:30:00 ','13-Apr-2022 03:00:00 PM',1);
+insert into Ouser values(2,'Rudransh','13 Vaishali Nagar,Jhansi,UP'              ,'2','Member','13-Apr-2022 9:00:00 AM','13-Apr-2022 7:00:00 PM',2);
+insert into Ouser values(3,'Kartik'  ,'3 Shpoornagar Hyderabad, Andhra Pradesh'  ,'1','Visitor','13-Apr-2022 12:30:00 PM','13-Apr-2022 7:00:00 PM',1);
+insert into Ouser values(4,'Pranit'  ,'13 Laxmi Narayan Lane,Mumbai, Maharashtra','1','Member','13-Apr-2022 8:00:00 AM','13-Apr-2022 7:00:00 PM',1);
+insert into Ouser values(5,'Rishabh' ,'60 Santoshnagar,Hyderabad, Andhra Pradesh','1','Visitor','13-Apr-2022 11:30:00 AM','13-Apr-2022 7:00:00 PM',1);
+insert into Ouser values(6,'Alisha'  ,'32 Jai Jawan Colony,Patiala,Punjab'       ,'3','Member','13-Apr-2022 9:15:00 AM','13-Apr-2022 7:00:00 PM',3);
+insert into Ouser values(7,'Sanya'   ,'11 Rajpura Colony,Patiala,Punjab'         ,'4','Member','13-Apr-2022 7:30:00 AM','13-Apr-2022 7:00:00 PM',4);
+insert into Ouser values(8,'Rohan'   ,'22 Gomti Nagar,Lucknow,UP'                ,'1','Member','13-Apr-2022 5:30:00 AM','13-Apr-2022 7:00:00 PM',1);
+insert into Ouser values(9,'Hritik'  ,'503 Udyog Vihar, Gurgaon,Delhi'           ,'2','Visitor','13-Apr-2022 8:30:00 AM','13-Apr-2022 7:00:00 PM',2);
+insert into Ouser values(10,'Dev'    ,'15 Spanish Garden, Ludhiana, Punjab'      ,'5','Member','13-Apr-2022 11:00:00 AM','13-Apr-2022 7:00:00 PM',5);
+
+
+
+--entries for Omember--
+
+
+insert into Omember values('1','haduifa','Computer','16-May-2002',002,'532','13-Apr-2022','13-May-2022');
+insert into Omember values('2','ihreijr','Mechanical','11-Apr-2002',007,'536','13-Apr-2022','13-May-2022');
+insert into Omember values('3','woighoge','Computer','05-Jun-2002',001,'785','13-Apr-2022','14-May-2022');
+insert into Omember values('4','wgieho','Electrical','07-Dec-2002',004,'323','13-Apr-2022','14-May-2022');
+insert into Omember values('5','oajsda','Electrical','13-Aug-2002',006,'123','14-Apr-2022','14-May-2022');
+insert into Omember values('6','feoihewof','Mechanical','21-Jan-2002',008,'134','14-Apr-2022','14-May-2022');
+insert into Omember values('7','fewje','Computer','16-Mar-2002',010,'231','14-Apr-2022','14-May-2022');
+
+
+--entries for sports--
+
+
+insert into sports values(1,'Shuttle',1);
+insert into sports values(2,'Badminton Racket',1);
+insert into sports values(3,'Lawn Tennis Racket',2);
+insert into sports values(4,'Badminton Racket',1);
+insert into sports values(5,'Badminton Racket',1);
+insert into sports values(6,'Chessboard',4);
+insert into sports values(7,'Lawn Tennis Racket',3);
+
+
+--SELECT--
+
+select * from  Ouser
+select * from  Gate
+select * from  Hostel
+select * from  visitor 
+select * from  Omember 
+select * from  sports
+
+
+--FUNCTIONS--
+
+
+
+
+
+--LOGIN FOR MEMBER
+
+
+CREATE OR REPLACE PROCEDURE loginPortal(user IN VARCHAR2, pword IN VARCHAR2)
+IS
+  passAux Omember.pword%TYPE;
+  incorrect_password EXCEPTION;
+BEGIN
+   
+   
+  SELECT pword INTO passAux
+  FROM Omember
+  WHERE mid LIKE user;
+  
+  IF passAux LIKE pword THEN
+    DBMS_OUTPUT.PUT_LINE('User ' || user || ' logging succesfull');
+  ELSE
+    RAISE incorrect_password;
+  END IF;
+  
+  EXCEPTION
+  WHEN no_data_found OR incorrect_password THEN 
+       DBMS_OUTPUT.PUT_LINE('Incorrect username or password');
+                                   
+END;
+
+
+
+SET SERVEROUTPUT ON;
+DECLARE
+  user Omember.mid%TYPE;
+  pass Omember.pword%TYPE;
+BEGIN
+  user := 'a11';
+  pass := 'PASSWORD';
+  loginPortal(user,pass);
+END;
+
+
+
+--LOGIN FOR visitor
+
+
+CREATE OR REPLACE PROCEDURE loginPortal2(user IN VARCHAR2, pword IN VARCHAR2)
+
+IS
+
+  passAux visitor.otp%TYPE;
+  incorrect_password EXCEPTION;
+  
+BEGIN
+   
+   
+  SELECT pword INTO passAux
+  FROM visitor
+  WHERE vid LIKE user;
+ 
+  
+  IF passAux LIKE pword THEN
+    DBMS_OUTPUT.PUT_LINE('User ' || user || ' loging succesfull');
+  ELSE
+    RAISE incorrect_password;
+  END IF;
+  
+  EXCEPTION
+  WHEN no_data_found OR incorrect_password THEN 
+       DBMS_OUTPUT.PUT_LINE('Incorrect username or password');
+                                   
+END;
+
+
+
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+
+  user visitor.vid%TYPE;
+  pass visitor.otp%TYPE;
+
+BEGIN
+
+  user := &Username;
+  pass := &Password;
+  loginPortal2(user,pass);
+
+END;
+
+
+
+
+--function for counting no of hostels 
+ 
+ 
+ 
+ 
+ select count(*) from Hostel;
+ 
+ 
+ 
+ 
+ --function tells you how many people are there in a certain hostel
+
+
+CREATE OR REPLACE PROCEDURE hostelOccupancy(hid IN Hostel.hostelid%TYPE)
+IS
+num number;
+BEGIN
+select count(*) into num 
+from Omember 
+where Omember.hostelid=hid;
+
+DBMS_OUTPUT.PUT_LINE('The number of occupants in '|| hid||' is '||num);
+
+EXCEPTION
+WHEN no_data_found THEN
+DBMS_OUTPUT.PUT_LINE('No occupancy in said hostel');
+END;
+
+
+SET SERVEROUTPUT ON;
+DECLARE
+  hid Hostel.hostelid%TYPE;
+BEGIN
+  hid := 008;
+  hostelOccupancy(hid);
+END;
